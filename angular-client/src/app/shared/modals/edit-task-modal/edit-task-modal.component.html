@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Edit task - {{ task.name }}
+  </h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-edit-task-form
+          [workspace]="workspace"
+          [project]="project"
+          [task]="task"
+          (updated)="onUpdated($event)"
+          (error)="onError($event)"
+  ></app-edit-task-form>
+</div>

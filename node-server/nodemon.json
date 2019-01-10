@@ -1,0 +1,11 @@
+{
+  "verbose": true,
+  "env": {
+    "NODE_ENV": "development",
+    "PORT": 8000
+  },
+  "watch": ["src"],
+  "ext": "ts,json,yaml",
+  "ignore": ["src/e2e/*"],
+  "exec": "ts-node src"
+}

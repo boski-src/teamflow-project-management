@@ -1,0 +1,74 @@
+<app-page-breadcrumb [pages]="pages"></app-page-breadcrumb>
+<app-project-navbar [workspace]="workspace" [project]="project" [roles]="roles"></app-project-navbar>
+
+<div class="row">
+  <div class="col-12 col-md-12 col-lg-12">
+    <h2 class="mt-0 mb-4">
+      <button class="btn btn-success btn-lg btn-icon-split" (click)="openCreateTaskModal()">
+        <i class="fa fa-plus"></i>
+        <div>Add task</div>
+      </button>
+    </h2>
+    <div class="board" cdkDropListGroup>
+
+      <div class="tasks col-sm-12 col-md-4 col-lg-3" *ngFor="let list of lists">
+        <h6 [class]="'mt-0 task-header bg-' + list.color">
+          {{ list.name }}
+        </h6>
+        <div
+                class="tasks-list"
+                cdkDropList
+                [cdkDropListData]="list.tasks"
+                (cdkDropListDropped)="drop(list, $event)"
+        >
+          <div
+                  class="task-list-items"
+                  *ngFor="let task of list.tasks"
+                  [cdkDragData]="task"
+                  cdkDrag
+          >
+            <div class="card mb-0">
+              <div class="card-body p-3">
+                <small class="float-right text-muted">{{ task.due | date: 'MMM d, y' }}</small>
+                <ng-container [ngSwitch]="task.priority">
+                  <span class="badge badge-danger" *ngSwitchCase="3">High</span>
+                  <span class="badge badge-warning" *ngSwitchCase="2">Medium</span>
+                  <span class="badge badge-success" *ngSwitchCase="1">Low</span>
+                </ng-container>
+                <h5 class="mt-3 mb-3">
+                  <a href="javascript:void(0)" (click)="openViewTaskModal(task)">
+                    {{ task.name }}
+                  </a>
+                </h5>
+                <div class="float-right" ngbDropdown placement="top-right">
+                  <a href="javascript:void(0)" class="btn btn-icon btn-sm" ngbDropdownToggle>
+                  </a>
+                  <div ngbDropdownMenu>
+                    <a href="javascript:void(0)" class="dropdown-item has-icon" (click)="openViewTaskModal(task)">
+                      <i class="fas fa-eye"></i> View
+                    </a>
+                    <a href="javascript:void(0)" class="dropdown-item has-icon" (click)="openEditTaskModal(task)">
+                      <i class="far fa-edit"></i> Edit
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a
+                            href="javascript:void(0)"
+                            class="dropdown-item has-icon text-danger"
+                            (click)="deleteTask(task)"
+                    >
+                      <i class="far fa-trash-alt"></i> Delete
+                    </a>
+                  </div>
+                </div>
+                <p class="mb-0">
+                  <app-user-item-box [user]="task.author"></app-user-item-box>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

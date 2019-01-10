@@ -1,0 +1,4 @@
+{
+  "subject": "Recovery Link - %(firstName)s",
+  "html": "Hello <b>%(firstName)s</b>, <br> Click here > <a href=\"http://localhost:4200/auth/new-password/%(userId)s/%(token)s\">%(token)s</a>"
+}

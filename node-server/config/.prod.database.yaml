@@ -1,0 +1,10 @@
+mongo:
+  username: VALUE
+  password: VALUE
+  hostname: VALUE
+  port: VALUE
+  database: VALUE
+redis:
+  hostname: VALUE
+  port: VALUE
+  password: VALUE

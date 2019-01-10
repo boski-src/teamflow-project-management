@@ -1,0 +1,30 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "removeComments": true,
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+    "paths": {
+      "*": ["./node_modules/@types/*.ts"]
+    },
+    "lib": [
+      "es2017",
+      "dom",
+      "es5",
+      "es6",
+      "es2015",
+      "esnext"
+    ],
+    "types": ["node"]
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "src/e2e",
+    "node_modules"
+  ]
+}

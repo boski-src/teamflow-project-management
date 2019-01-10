@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-body p-2">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/', workspace.id, 'project', project.id]">
+              <i class="fas fa-info"></i> Details
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+                    class="nav-link"
+                    [routerLink]="['/', workspace.id, 'project', project.id, 'tasks']"
+                    routerLinkActive="active"
+            >
+              <i class="fas fa-tasks"></i> Tasks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+                    class="nav-link"
+                    [routerLink]="['/', workspace.id, 'project', project.id, 'events']"
+                    routerLinkActive="active"
+            >
+              <i class="fas fa-calendar"></i> Events
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="roles.isAdmin">
+            <a class="nav-link" href="javascript:void(0)" (click)="openEditProjectModal()">
+              <i class="fas fa-edit"></i> Settings
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

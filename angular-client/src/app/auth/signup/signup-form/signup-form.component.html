@@ -1,0 +1,81 @@
+<form [formGroup]="formData" (submit)="submit()">
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" formControlName="firstName" class="form-control" autofocus>
+    <div class="text-danger" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+      <div *ngIf="firstName.errors.required">
+        The first name field is required.
+      </div>
+      <div *ngIf="firstName.errors.minlength">
+        The first name must be at least 2 characters.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName" class="form-control">
+    <div class="text-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+      <div *ngIf="lastName.errors.required">
+        The last name field is required.
+      </div>
+      <div *ngIf="lastName.errors.minlength">
+        The last name must be at least 2 characters.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" formControlName="email" class="form-control">
+    <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        The email field is required.
+      </div>
+      <div *ngIf="email.errors.email">
+        The email must be a valid email address.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="d-block">Password</label>
+    <div class="input-group">
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="showPassword = !showPassword">
+          <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+        </button>
+      </div>
+    </div>
+    <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required">
+        The password field is required.
+      </div>
+      <div *ngIf="password.errors.minlength">
+        The password must be at least 8 characters.
+      </div>
+    </div>
+  </div>
+  <div class="form-check mt-1">
+    <input class="form-check-input" type="checkbox" formControlName="termsAccept">
+    <label class="form-check-label">
+      I agree with the
+      <button class="btn btn-href btn-sm" (click)="openTermsModal()">
+        Terms & Conditions
+      </button>
+    </label>
+    <div class="text-danger" *ngIf="termsAccept.invalid && (termsAccept.dirty || termsAccept.touched)">
+      <div *ngIf="termsAccept.errors.pattern">
+        Terms check box is required to continue.
+      </div>
+    </div>
+  </div>
+  <div class="form-group mt-3">
+    <button
+            type="submit"
+            [disabled]="!formData.valid"
+            class="btn btn-lg btn-block"
+            [class.btn-primary]="formData.valid"
+    >
+      Register
+    </button>
+  </div>
+</form>

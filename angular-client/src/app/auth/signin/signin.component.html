@@ -1,0 +1,21 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <h4>Sign In</h4>
+  </div>
+  <div class="card-body">
+    <app-signin-form></app-signin-form>
+    <div class="text-center mt-4 mb-3">
+      <div class="text-job text-muted">Login With Social</div>
+    </div>
+    <div class="row sm-gutters">
+      <div class="col-4 offset-4">
+        <button class="btn btn-block btn-social btn-facebook btn-lg" (click)="facebook()">
+          <span class="fab fa-facebook"></span> Facebook
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-5 text-muted text-center">
+  Don't have an account? <a routerLink="/auth/signup">Sign up!</a>
+</div>

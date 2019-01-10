@@ -1,0 +1,11 @@
+<div class="section-header">
+  <ul class="breadcrumb bg-transparent" *ngIf="items.length > 0; else loading">
+    <li class="breadcrumb-item" *ngFor="let item of items">
+      {{ item }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

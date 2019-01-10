@@ -1,0 +1,40 @@
+<div *ngIf="user; else notFound">
+  <a [routerLink]="['/', 'profile', id]" style="text-decoration: none">
+    <ng-container *ngIf="size > 0">
+      <img
+              alt="image"
+              [src]="avatar"
+              class="rounded-circle"
+              [attr.width]="size"
+      >
+      <ng-container *ngIf="status && size">
+        <img
+                class="online"
+                src="http://www.clker.com/cliparts/R/d/z/v/H/1/neon-green-dot-md.png"
+                *ngIf="isOnline; else redDot"
+        >
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="naming">
+      <ng-template *ngIf="profile?.fullName; else standardName">
+        {{ profile.fullName }}
+      </ng-template>
+    </ng-container>
+  </a>
+</div>
+
+<ng-template #redDot>
+  <img
+          class="online"
+          src="http://www.clker.com/cliparts/J/c/V/v/j/5/reddot-md.png"
+  >
+</ng-template>
+
+<ng-template #standardName>
+  {{ realName }}
+</ng-template>
+
+<ng-template #notFound>
+  Unknown user
+</ng-template>
+

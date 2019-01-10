@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Account Settings</h4>
+    <button type="button" class="close" (click)="activeModal.dismiss()" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle>Edit Profile</ng-template>
+        <ng-template ngbTabContent>
+          <app-edit-profile-tab></app-edit-profile-tab>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>Change Email</ng-template>
+        <ng-template ngbTabContent>
+          <app-edit-email-tab></app-edit-email-tab>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>Change Password</ng-template>
+        <ng-template ngbTabContent>
+          <app-edit-password-tab></app-edit-password-tab>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>Get API key</ng-template>
+        <ng-template ngbTabContent>
+          <app-api-key-tab></app-api-key-tab>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

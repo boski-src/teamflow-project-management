@@ -1,0 +1,17 @@
+facebook:
+  appId: VALUE
+  appSecret: VALUE
+certs:
+  jwt-public: "certs/jwt/public.pem"
+  jwt-private: "certs/jwt/private.pem"
+security:
+  jwt-expire: 12h
+  apikey-expire: 100d
+mailer:
+  user: VALUE
+  pass: VALUE
+  from: PMA
+  smtp:
+    host: 127.0.0.1
+    port: VALUE
+    secure: true

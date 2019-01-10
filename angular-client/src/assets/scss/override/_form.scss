@@ -1,0 +1,127 @@
+.form-control, 
+.input-group-text,
+.custom-select, 
+.custom-file-label {
+  @include form-control;
+  &:focus {
+    @include form-control-focus;
+  }
+}
+
+.input-group-text, 
+select.form-control:not([size]):not([multiple]), 
+.form-control:not(.form-control-sm):not(.form-control-lg) {
+  font-size: 14px;
+  padding: 10px 15px;
+  height: 42px;
+}
+
+textarea.form-control {
+  min-height: 64px !important;
+}
+
+.custom-control {
+  line-height: 1.6rem;
+}
+
+.custom-file, 
+.custom-file-label, 
+.custom-select, 
+.custom-file-label:after,
+.form-control[type="color"], 
+select.form-control:not([size]):not([multiple]) {
+  height: calc(2.25rem + 6px);
+}
+
+.form-control.creditcard {
+  background-position: 98%;
+  background-repeat: no-repeat;
+  background-size: 40px;
+  padding-right: 60px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  .control-label,
+  > label {
+    font-weight: 600;
+    color: color(fontdark);
+    font-size: 12px;
+    letter-spacing: .5px;
+  }
+  &.floating-addon {
+    position: relative;
+    .input-group-prepend {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 5;
+    }
+    &:not(.floating-addon-not-append) {
+      .input-group-append {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        left: initial;
+        right: 0;
+      }
+    }
+    .input-group-prepend .input-group-text, .input-group-append .input-group-text {
+      border-color: transparent;
+      background-color: transparent;
+      font-size: 20px;
+    }
+    .form-control {
+      border-radius: 3px;
+      padding-left: 40px;
+      + .form-control {
+        border-radius: 0 3px 3px 0;
+        padding-left: 15px;
+      }
+    }
+  }
+}
+
+.input-group-append [class*="btn-outline-"] {
+  background-color: color_lighten(primary, 32.4%);
+}
+
+.form-text {
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-control-input:checked~.custom-control-label::before {
+  background-color: color(primary) !important;
+}
+
+.custom-checkbox-table {
+}
+
+.custom-file-label {
+  line-height: 2.2;
+  &:after {
+    height: calc(2.25rem + 4px);
+    line-height: 2.2;
+    border-color: transparent;
+  }
+  &:focus, &:active {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.custom-file-input {
+  &:focus {
+    + .custom-file-label {
+      box-shadow: none;
+      border-color: color(primary);
+      &:after {
+        border-color: transparent;
+      }
+    }
+  }
+}

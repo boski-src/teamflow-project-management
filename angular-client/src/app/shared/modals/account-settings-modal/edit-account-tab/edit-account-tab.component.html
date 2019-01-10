@@ -1,0 +1,29 @@
+<div class="text-center">
+  <div class="mb-2">
+    <img
+            class="rounded-circle"
+            style="width: 150px; height: 150px"
+            [src]="avatar"
+            alt="user-avatar"
+    >
+  </div>
+  <label class="btn btn-sm btn-primary" *ngIf="!uploadingAvatar; else uploading">
+    Upload Avatar
+    <input
+            type="file"
+            accept="image/gif,image/png,image/jpeg,image/tiff,image/bmp"
+            (change)="onFileChange($event.target.files)"
+            hidden
+    >
+  </label>
+</div>
+
+<div class="section">
+  <app-edit-profile-form (updated)="onProfileUpdated($event)" (error)="onProfileError($event)"></app-edit-profile-form>
+</div>
+
+<ng-template #uploading>
+  <label class="btn btn-sm btn-dark">
+    <i class="fas fa-sync fa-spin"></i>
+  </label>
+</ng-template>

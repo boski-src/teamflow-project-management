@@ -1,0 +1,43 @@
+$colors: (
+        primary: #6777EF,
+        secondary: #CDD3D8,
+        success: #63ED7A,
+        info: #3ABAF4,
+        warning: #FFA426,
+        danger: #FC544B,
+        light: #E3EAEF,
+        grey: #868E96,
+        whitesmoke: #F7F9F9,
+        dark: #191D21,
+        muted: #98A6AD,
+        body: #FAFDFB,
+        font: #6C757D,
+        fontdark: #34395E,
+        white: #FFF
+);
+
+$line-height-computed: floor(($font-size-base * $line-height-base));
+$padding-base-vertical: $btn-padding-y;
+$padding-base-horizontal: $btn-padding-x;
+$font-size-large: $font-size-lg;
+$padding-large-vertical: $btn-padding-y-lg;
+$padding-large-horizontal: $btn-padding-x-lg;
+$font-size-small: $font-size-sm;
+$padding-small-vertical: $btn-padding-y-sm;
+$padding-small-horizontal: $btn-padding-y-sm;
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+@function color_lighten($key, $amount) {
+  @return lighten(map-get($colors, $key), $amount);
+}
+
+@function color_darken($key, $amount) {
+  @return darken(map-get($colors, $key), $amount);
+}
+
+@function to_opacity($color, $opacity) {
+  @return rgba(color($color), $opacity);
+}

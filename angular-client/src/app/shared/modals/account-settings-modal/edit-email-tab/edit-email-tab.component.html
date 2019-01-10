@@ -1,0 +1,9 @@
+<div class="text-center">
+  <div class="alert alert-warning">
+    When you change email, does it log you out.
+  </div>
+</div>
+
+<div class="section">
+  <app-edit-email-form (updated)="onUpdated($event)" (error)="onError($event)"></app-edit-email-form>
+</div>

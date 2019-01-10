@@ -1,0 +1,23 @@
+appenders:
+  console:
+    type: console
+  errorFile:
+    type: dateFile
+    filename: "logs/errors.log"
+    pattern: ".yyyy-MM-dd"
+    compress: true
+    category: errors
+  errors:
+    type: logLevelFilter
+    level: ERROR
+    appender: errorFile
+categories:
+  default:
+    appenders:
+    - console
+    level: DEBUG
+  errors:
+    appenders:
+    - errors
+    - console
+    level: DEBUG

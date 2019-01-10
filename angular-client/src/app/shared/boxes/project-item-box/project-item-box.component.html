@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <h4>{{ project.name }}</h4>
+  </div>
+  <div class="card-body">
+    <p [class.text-dark]="project.description">
+      {{ project.description ? project.description.substr(0, 64) : 'No description' }}
+    </p>
+  </div>
+  <div class="card-footer text-right">
+    <a class="btn btn-primary" [routerLink]="['/', workspace.id, 'project', project.id]">Select</a>
+  </div>
+</div>

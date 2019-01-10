@@ -1,0 +1,131 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    View event - {{ event?.name }}
+  </h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="event">
+  <div class="p-2">
+
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="mb-4">
+          <h5>Timestamps:</h5>
+          <div>Created:</div>
+          <label class="badge badge-dark">
+            {{ event.createdAt | date: 'short' }}
+          </label>
+          <div>Updated:</div>
+          <label class="badge badge-primary">
+            {{ event.updatedAt | date: 'short' }}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-4">
+          <h5>Dates:</h5>
+          <div>Start:</div>
+          <label class="badge badge-white" [style.background-color]="event.colors.primary">
+            {{ event.start | date: 'medium' }}
+          </label>
+          <div>End:</div>
+          <label class="badge badge-white" [style.background-color]="event.colors.secondary">
+            {{ event.end | date: 'medium' }}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-4">
+          <h5>Author:</h5>
+          <app-user-item-box [user]="event.author"></app-user-item-box>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button
+              class="btn btn-block btn-href"
+              (click)="descriptionCollapsed = !descriptionCollapsed"
+              *ngIf="descriptionCollapsed"
+      >
+        Show description
+      </button>
+      <div class="mb-4 bg-whitesmoke" [ngbCollapse]="descriptionCollapsed">
+        <p class="p-3 table-responsive" style="max-height: 50vh">
+          {{ event.description ? event.description : 'No description' }}
+        </p>
+        <div class="text-center" (click)="descriptionCollapsed = true">
+          <button class="btn btn-href btn-sm btn-icon">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section">
+        <h2 class="section-title">Comments</h2>
+      </div>
+      <div class="comments media" #commentsBox>
+        <div class="media-body">
+          <ul class="comments-item list-unstyled" *ngIf="notes">
+            <div class="alert alert-primary text-center" *ngIf="!notes.length">
+              Comment as first this event!
+            </div>
+            <li class="media" *ngFor="let note of notes">
+              <app-user-item-box
+                      [user]="note.invoker"
+                      [size]="64"
+                      [status]="false"
+                      [naming]="false"
+              ></app-user-item-box>
+              <div class="media-body ml-3">
+                <div class="media-title mb-0">
+                  {{ note.invoker.name }}
+                  <div class="float-right text-time text-muted">{{ note.date | date: 'medium' }}</div>
+                </div>
+                <div class="media-description text-muted">
+                  {{ note.body }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <form class="mt-2">
+        <textarea
+                class="form-control form-control-light mb-2"
+                placeholder="Write comment..."
+                [formControl]="commentControl"
+                rows="2"
+        >
+        </textarea>
+        <div class="text-danger" *ngIf="commentControl.invalid && (commentControl.dirty || commentControl.touched)">
+          <div *ngIf="commentControl.errors.required">
+            The comment field cannot be empty.
+          </div>
+          <div *ngIf="commentControl.errors.maxlength">
+            The comment may not be greater than 256 characters.
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="btn-group mb-2 ml-2 d-none d-sm-inline-block">
+            <button
+                    type="button"
+                    class="btn"
+                    [disabled]="!valid"
+                    class="btn btn-md"
+                    [class.btn-primary]="valid"
+                    (click)="sendComment()"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

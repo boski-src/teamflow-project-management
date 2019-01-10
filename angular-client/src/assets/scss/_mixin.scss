@@ -1,0 +1,88 @@
+@mixin shadow($size: 0 4px 8px, $color: rgba(0,0,0,.03)) {
+  box-shadow: $size $color;
+}
+
+@mixin card_base($border-radius: 3px, $shadow: true) {
+  @if ($shadow) {
+    @include shadow();
+  }
+  background-color: #FFF;
+  border-radius: $border-radius;
+  border: none;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+@mixin background_spinner($size: 80px) {
+  background-image: url('../img/spinner.svg');
+  background-size: $size;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin overlay($z-index: 99) {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: $z-index;
+}
+
+@mixin box($width: 50px, $height: 50px, $line-height: 50px, $font-size: 20px, $border-radius: 3px) {
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+  line-height: $line-height;
+  font-size: $font-size;
+  text-align: center;
+}
+
+@mixin shadow-lighten($color, $amount: 15%) {
+  box-shadow: 0 2px 6px color_lighten($color, $amount);
+}
+
+@mixin button-shadow($color, $amount: 15%) {
+  @include shadow-lighten($color, $amount);
+}
+
+@mixin icon-shadow($color, $amount: 15%) {
+  box-shadow: 0 4px 8px color_lighten($color, $amount);
+}
+
+@mixin dropdown-indicator($content: '\f0d7') {
+  content: $content;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  font-size: 12px;
+}
+
+@mixin main-sidebar($z-index: 880) {
+  position: fixed;
+  top: 70px;
+  height: 100%;
+  width: 250px;
+  background-color: #FFF;
+  z-index: $z-index;
+}
+
+@mixin children-margin() {
+  margin: 0 8px 10px 0;
+}
+
+@mixin form-control() {
+  background-color: color_lighten(primary, 32.4%);
+  border-color: color_lighten(primary, 27%);
+}
+
+@mixin form-control-focus() {
+  background-color: color_lighten(primary, 32.8%);
+  border-color: color_lighten(primary, 10%);
+}

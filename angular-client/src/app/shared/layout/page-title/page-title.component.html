@@ -1,0 +1,9 @@
+<div [class]="'section-header ' + background">
+  <h1 *ngIf="item && item.search('undefined') === -1; else loading">
+    {{ item }}
+  </h1>
+</div>
+
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

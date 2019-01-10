@@ -1,0 +1,114 @@
+<app-page-breadcrumb [pages]="pages"></app-page-breadcrumb>
+<app-workspace-navbar [roles]="roles" [workspace]="workspace"></app-workspace-navbar>
+
+<div class="row">
+  <div class="col-12 col-md-12 col-lg-12">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4>Details</h4>
+        <div class="card-header-action">
+          <button
+                  class="btn btn-icon btn-light btn-sm"
+                  (click)="detailsCollapsed = !detailsCollapsed"
+                  [attr.aria-expanded]="!detailsCollapsed"
+          >
+            <i class="fas" [class.fa-plus]="detailsCollapsed" [class.fa-minus]="!detailsCollapsed"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body row" [ngbCollapse]="detailsCollapsed">
+        <div class="col-6">
+          <h3 class="text-center">{{ workspace.name }}</h3>
+          <p class="table-responsive" style="max-height: 300px">
+            {{ workspace.description ? workspace.description : 'No description' }}
+          </p>
+        </div>
+        <div class="col-6">
+          <div class="table-responsive">
+            <table class="table table-hover text-center">
+              <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Founder</td>
+                <td>
+                  <app-user-item-box [user]="workspace.leader"></app-user-item-box>
+                </td>
+              </tr>
+              <tr>
+                <td>Created</td>
+                <td>
+                  {{ workspace.createdAt | date: 'medium' }}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-12 col-lg-6">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4>Projects</h4>
+        <div class="card-header-action">
+          <button
+                  class="btn btn-success btn-sm"
+                  (click)="openCreateProjectModal()"
+                  *ngIf="roles.isAdmin"
+          >
+            Create
+          </button>
+          <button
+                  class="btn btn-icon btn-light btn-sm"
+                  (click)="projectsCollapsed = !projectsCollapsed"
+                  [attr.aria-expanded]="!projectsCollapsed"
+          >
+            <i class="fas" [class.fa-plus]="projectsCollapsed" [class.fa-minus]="!projectsCollapsed"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body row" [ngbCollapse]="projectsCollapsed">
+        <div class="col-12 col-md-6 col-lg-12" *ngFor="let project of projects">
+          <app-project-item-box [workspace]="workspace" [project]="project"></app-project-item-box>
+        </div>
+        <div class="alert alert-info text-center col-12" *ngIf="!projects.length">No found any projects.</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-12 col-lg-6">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4>Chats</h4>
+        <div class="card-header-action">
+          <button
+                  class="btn btn-success btn-sm"
+                  (click)="openCreateChatModal()"
+                  *ngIf="roles.isAdmin"
+          >
+            Create
+          </button>
+          <button
+                  class="btn btn-icon btn-light btn-sm"
+                  (click)="chatsCollapsed = !chatsCollapsed"
+                  [attr.aria-expanded]="!chatsCollapsed"
+          >
+            <i class="fas" [class.fa-plus]="chatsCollapsed" [class.fa-minus]="!chatsCollapsed"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body row" [ngbCollapse]="chatsCollapsed">
+        <div class="col-12 col-md-6 col-lg-12" *ngFor="let chat of chats">
+          <app-chat-item-box [workspace]="workspace" [chat]="chat"></app-chat-item-box>
+        </div>
+        <div class="alert alert-info text-center col-12" *ngIf="!chats.length">No found any chats.</div>
+      </div>
+    </div>
+  </div>
+</div>

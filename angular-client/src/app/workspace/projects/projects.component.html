@@ -1,0 +1,102 @@
+<app-page-breadcrumb [pages]="pages"></app-page-breadcrumb>
+<app-workspace-navbar [roles]="roles" [workspace]="workspace"></app-workspace-navbar>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>
+          Projects list
+          <div class="btn-group" role="group">
+            <button
+                    class="btn btn-primary btn-sm btn-icon"
+                    *ngIf="!loading; else loadingBtn"
+                    [disabled]="loading"
+                    (click)="refreshProjects()"
+            >
+              <i class="fas fa-sync"></i>
+            </button>
+            <button class="btn btn-success btn-sm btn-icon" (click)="openCreateProjectModal()">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </h4>
+        <div class="card-header-form">
+          <input type="text" class="form-control" placeholder="Search" [(ngModel)]="search">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+                  class="table table-hover text-center"
+                  *ngIf="(projects | searchByKey: { keys: ['name'], value: search }).length; else notFound"
+          >
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Deadline</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let project of (projects | searchByKey: { key: 'name', value: search})">
+              <td>{{ project.name }}</td>
+              <td>
+                <div class="badge badge-success" *ngIf="project.finished">Completed</div>
+                <div class="badge badge-warning" *ngIf="!project.finished">Working</div>
+              </td>
+              <td>
+                {{ project.createdAt | date: 'medium' }}
+              </td>
+              <td>
+                {{ project.deadline | date: 'medium' }}
+              </td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button
+                          class="btn btn-warning btn-icon"
+                          (click)="openEditProjectModal(project)"
+                          *ngIf="roles.isAdmin"
+                  >
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <a
+                          [routerLink]="['/', workspace.id, 'project', project.id]"
+                          class="btn btn-primary btn-icon"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <button
+                          class="btn btn-danger btn-icon"
+                          (click)="deleteProject(project)"
+                          *ngIf="roles.isAdmin"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingBtn>
+  <button class="btn btn-sm btn-dark btn-icon">
+    <i class="fas fa-sync fa-spin"></i>
+  </button>
+</ng-template>
+
+<ng-template #notFound>
+  <div class="alert alert-warning text-center" *ngIf="search">
+    Not found any projects for: <b>{{ search }}</b>
+  </div>
+  <div class="alert alert-info text-center" *ngIf="!search">
+    Not found any projects.
+  </div>
+</ng-template>

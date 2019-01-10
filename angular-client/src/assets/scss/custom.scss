@@ -1,0 +1,243 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #FFF;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #D8D8D8;
+}
+
+/* Online dot */
+.online {
+  width: 10px;
+  position: relative;
+  right: 11px;
+  top: -13px;
+  z-index: 999;
+}
+
+.online-lg {
+  width: 16px;
+  position: relative;
+  right: 18px;
+  top: -32px;
+  z-index: 999;
+}
+
+/* Task Board */
+
+.board {
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto
+}
+
+@media (max-width: 800px) {
+  .board {
+    display: flex;
+  }
+}
+
+.tasks {
+  display: inline-block;
+  background: #F7F7F7;
+  vertical-align: top;
+  margin-bottom: 30px;
+  border-radius: .25rem;
+  padding: 0px;
+  min-width: 280px;
+  max-width: calc(100% / 5) !important;
+
+  &:not(:last-child) {
+    margin-right: 0.5rem
+  }
+
+  .card {
+    white-space: normal;
+    margin-top: 1rem
+  }
+
+  .task-header {
+    padding: 0.8rem;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: .25rem .25rem 0 0;
+  }
+  .task-list-items {
+    min-height: 100px;
+    position: relative;
+
+    a {
+      color: #0C0C0C;
+    }
+  }
+
+  .task-list-items:before {
+    content: "No Tasks";
+    position: absolute;
+    line-height: 110px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600
+  }
+
+  .tasks-list {
+    padding: 0 1rem 1rem 1rem;
+    min-height: 160px;
+  }
+}
+
+/* Others */
+
+label a {
+  color: #FFF;
+}
+
+label a:hover {
+  color: #FFF;
+}
+
+.breadcrumb {
+  padding: 0;
+  color: white;
+  font-weight: 700;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  padding: 0 0.15rem;
+  color: rgba(255, 255, 255, 0.21);
+}
+
+.bg-primary2 {
+  background-color: #6271EA !important;
+}
+
+.sidebar-menu > li a.active {
+  color: #007BFF !important;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+.nicescroll-cursors {
+  background-color: #2A00FF;
+}
+
+.nicescroll-rails {
+  opacity: 0.5 !important;
+}
+
+.card {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn.btn-icon-split i {
+  background-color: transparent;
+}
+
+.main-sidebar .sidebar-menu li ul.dropdown-menu li {
+  a {
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    color: #868E96;
+    height: 35px;
+    padding-left: 30px !important;
+    font-weight: 400;
+  }
+}
+
+.main-sidebar .sidebar-menu li.menu-header {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.navbar {
+  background-color: #6777EF;
+  position: fixed;
+  right: 0;
+  @media (max-width: 1024px) {
+    left: 0;
+    right: 0;
+  }
+}
+
+.navbar-bg {
+  background-color: #6271EA;
+  height: 130px;
+  @media (max-width: 1024px) {
+    height: 150px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-footer {
+    .footer-left {
+      float: none;
+      text-align: center;
+    }
+    .footer-right {
+      float: none;
+      text-align: center;
+    }
+  }
+}
+
+.section .section-header {
+  background-color: transparent;
+  padding: 10px 0;
+
+  h1 {
+    color: #FFF;
+  }
+
+  @media (max-width: 1024px) {
+    text-align: center;
+    display: block;
+  }
+}
+
+.breadcrumb-item a {
+  color: #FFF;
+}
+
+.dropdown-list .dropdown-list-content {
+  height: 100%;
+  max-height: 350px;
+}
+
+textarea {
+  min-height: 40px;
+}
+
+.profile-widget .profile-widget-picture {
+  float: none;
+  margin: unset;
+  min-width: 100px;
+  max-width: 150px;
+}
+
+.comments {
+  max-height: 400px;
+  overflow: auto;
+
+  ul > .media {
+    margin-top: 1rem;
+  }
+}

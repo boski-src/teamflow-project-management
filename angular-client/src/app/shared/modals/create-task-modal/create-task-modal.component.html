@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Create task - {{ project.name }}
+  </h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-create-task-form
+          [workspace]="workspace"
+          [project]="project"
+          (created)="onCreated($event)"
+          (error)="onError($event)"
+  ></app-create-task-form>
+</div>

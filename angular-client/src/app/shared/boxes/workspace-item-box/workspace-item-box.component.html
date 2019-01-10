@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h4>{{ workspace.name }}</h4>
+    <div class="card-header-action">
+      <label (click)="unpin()" class="text-warning" *ngIf="isFavorite; else pinBtn">
+        <i class="fa fa-star"></i>
+      </label>
+    </div>
+  </div>
+  <div class="card-body">
+    <p [class.text-dark]="workspace.description">
+      {{ workspace.description ? workspace.description.substr(0, 64) : 'No description' }}
+    </p>
+  </div>
+  <div class="card-footer text-right">
+    <a class="btn btn-primary" [routerLink]="['/', workspace.id]">Select</a>
+  </div>
+</div>
+
+<ng-template #pinBtn>
+  <label (click)="pin()" class="text-light">
+    <i class="fa fa-star"></i>
+  </label>
+</ng-template>

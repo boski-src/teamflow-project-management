@@ -1,0 +1,97 @@
+<form [formGroup]="formData" (submit)="submit()">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" formControlName="name" class="form-control" autofocus>
+        <div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors.required">
+            The name field is required.
+          </div>
+          <div *ngIf="name.errors.minlength">
+            The name must be at least 3 characters.
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            The name may not be greater than 200 characters.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Priority</label>
+        <select class="form-control form-control-sm" formControlName="priority">
+          <option [value]="1">Low</option>
+          <option [value]="2">Medium</option>
+          <option [value]="3">High</option>
+        </select>
+        <div class="text-danger" *ngIf="priority.invalid && (priority.dirty || priority.touched)">
+          <div *ngIf="priority.errors.required">
+            The priority field is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea type="text" formControlName="description" class="form-control"></textarea>
+    <div class="text-danger" *ngIf="description.invalid && (description.dirty || description.touched)">
+      <div *ngIf="description.errors.maxlength">
+        The description may not be greater than 1500 characters.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>State</label>
+        <select class="form-control form-control-sm" formControlName="state">
+          <option [value]="1">TODO</option>
+          <option [value]="2">Approved</option>
+          <option [value]="3">In progress</option>
+          <option [value]="4">Testing</option>
+          <option [value]="5">Done</option>
+        </select>
+        <div class="text-danger" *ngIf="state.invalid && (state.dirty || state.touched)">
+          <div *ngIf="state.errors.required">
+            The state field is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Due Date</label>
+        <input
+                type="date"
+                class="form-control"
+                data-toggle="date-picker"
+                data-single-date-picker="true"
+                formControlName="due"
+        >
+        <div class="text-danger" *ngIf="due.invalid && (due.dirty || due.touched)">
+          <div *ngIf="due.errors.required">
+            The due field is required.
+          </div>
+          <div *ngIf="due.errors.date">
+            The due must be date type.
+          </div>
+          <div *ngIf="due.errors.minDate">
+            The due must not be less than or equal today.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <button
+            type="submit"
+            [disabled]="!formData.valid"
+            class="btn btn-md waves-effect"
+            [class.btn-primary]="formData.valid"
+    >
+      Save
+    </button>
+  </div>
+</form>

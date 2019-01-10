@@ -1,0 +1,46 @@
+<app-page-breadcrumb [pages]="pages"></app-page-breadcrumb>
+
+<div class="row">
+  <div class="col-12 col-md-12 col-lg-12">
+    <div class="card profile-widget text-center" *ngIf="user.id">
+      <div class="profile-widget-header mt-4">
+        <img alt="image" [src]="avatar" class="rounded-circle profile-widget-picture">
+        <img
+                class="online-lg"
+                src="http://www.clker.com/cliparts/R/d/z/v/H/1/neon-green-dot-md.png"
+                *ngIf="user.online; else redDot"
+        >
+      </div>
+      <div class="profile-widget-description">
+        <div class="profile-widget-name">
+          {{ user.firstName }}
+          <small *ngIf="profile.fullName">"{{ profile.fullName }}"</small>
+          {{ user.lastName }}
+          <div class="text-muted d-inline font-weight-normal">
+            <div class="slash"></div>
+            {{ profile.title ? profile.title : 'Unknown' }}
+          </div>
+        </div>
+        {{ profile.about }}
+      </div>
+      <div class="card-footer text-center" *ngIf="profile.community.length">
+        <div class="font-weight-bold mb-2">Follow On</div>
+        <a
+                *ngFor="let link of profile.community"
+                target="_blank"
+                [href]="link.url"
+                class="badge badge-light"
+        >
+          {{ link.platform }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #redDot>
+  <img
+          class="online"
+          src="http://www.clker.com/cliparts/J/c/V/v/j/5/reddot-md.png"
+  >
+</ng-template>

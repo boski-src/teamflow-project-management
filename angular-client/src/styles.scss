@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ionicons/dist/css/ionicons.css";
+@import "./assets/modules/fontawesome/css/all.css";
+
+@import "~bootstrap-social/bootstrap-social.css";
+@import "~angular-calendar/css/angular-calendar.css";
+@import "~flatpickr/dist/flatpickr.css";
+
+.cal-month-view .cal-open-day-events {
+  background-color: #6777EF;
+  box-shadow: unset;
+  a {
+    color: #FFF
+  }
+}

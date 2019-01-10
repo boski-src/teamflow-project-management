@@ -1,0 +1,24 @@
+<form>
+  <div class="form-group">
+    <label class="col-form-label">Current api key</label>
+    <textarea class="form-control form-control-lg" rows="5" readonly>{{ apiKey }}</textarea>
+  </div>
+  <div class="text-right">
+    <button
+            type="button"
+            class="btn btn-primary btn-md waves-effect"
+            (click)="changeSwal.show()"
+    >
+      Generate new
+    </button>
+  </div>
+</form>
+
+<swal
+        #changeSwal
+        title="Confirm Password"
+        text="To generate new api key"
+        input="password"
+        [showCancelButton]="true"
+        (confirm)="submit($event)">
+</swal>

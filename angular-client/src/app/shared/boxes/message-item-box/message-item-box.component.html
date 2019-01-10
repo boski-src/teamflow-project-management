@@ -1,0 +1,11 @@
+<div class="chat-item" [class.chat-right]="me" [class.chat-left]="!me">
+  <img
+          [src]="avatar"
+          placement="bottom"
+          [ngbTooltip]="invokerName"
+  >
+  <div class="chat-details">
+    <div class="chat-text">{{ message.body }}</div>
+    <div class="chat-time">{{ message.createdAt | date: 'M/d/yy, h:mm:ss a' }}</div>
+  </div>
+</div>

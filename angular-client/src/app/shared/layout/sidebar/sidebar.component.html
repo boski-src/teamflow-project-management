@@ -1,0 +1,184 @@
+<div class="main-sidebar">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand mt-3">
+      <a routerLink="/">
+        {{ meta.name }}
+      </a>
+    </div>
+    <div class="p-3 mb-4 hide-sidebar-mini">
+      <button
+              class="btn btn-primary btn-lg btn-icon-split btn-block"
+              (click)="openCreateWorkspaceModal()"
+      >
+        <i class="fa fa-plus"></i>
+        <div>Create Workspace</div>
+      </button>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-header">Dashboard</li>
+      <li>
+        <a class="nav-link" routerLink="/" routerLinkActive="active">
+          <i class="fas fa-home"></i> <span>Home</span>
+        </a>
+      </li>
+      <li ngbDropdown #workspacesDropdown="ngbDropdown">
+        <a href="javascript:void(0);" ngbDropdownToggle>
+          <i class="fas fa-network-wired"></i> <span>Workspaces</span>
+        </a>
+        <ul ngbDropdownMenu>
+          <li *ngFor="let workspace of workspaces">
+            <a class="nav-link" [routerLink]="['/', workspace.id]" routerLinkActive="active">
+              {{ workspace.name }}
+            </a>
+          </li>
+        </ul>
+      </li>
+      <hr>
+      <ng-container *ngIf="workspace.id">
+        <li class="menu-header">{{ workspace.name }}</li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id]">
+            <i class="fas fa-globe"></i> <span>Overview</span>
+          </a>
+        </li>
+        <li ngbDropdown>
+          <a href="javascript:void(0);" ngbDropdownToggle>
+            <i class="fas fa-list"></i> <span>Projects</span>
+          </a>
+          <ul ngbDropdownMenu>
+            <li *ngFor="let project of projects">
+              <a class="nav-link" [routerLink]="['/', workspace.id, 'project', project.id, 'tasks']"
+                 routerLinkActive="active">
+                {{ project.name }}
+              </a>
+            </li>
+            <li *ngIf="projects.length === 0">
+              <a>No projects</a>
+            </li>
+          </ul>
+        </li>
+        <li ngbDropdown>
+          <a href="javascript:void(0);" ngbDropdownToggle>
+            <i class="fas fa-comments"></i> <span>Chats</span>
+          </a>
+          <ul ngbDropdownMenu>
+            <li *ngFor="let chat of chats">
+              <a class="nav-link" [routerLink]="['/', workspace.id, 'chat', chat.id, 'messages']"
+                 routerLinkActive="active">
+                {{ chat.name }}
+              </a>
+            </li>
+            <li *ngIf="chats.length === 0">
+              <a>No chats</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="nav-link text-primary" [routerLink]="['/', workspace.id, 'users']" routerLinkActive="active">
+            <i class="fas fa-users"></i> <span>Users</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-info" href="javascript:void(0);" (click)="openEditWorkspaceModal()">
+            <i class="fas fa-edit"></i> <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link text-warning" href="javascript:void(0);" (click)="leaveWorkspaceSwal.show()">
+            <i class="fas fa-arrow-left"></i> <span>Leave</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-danger" href="javascript:void(0);" (click)="deleteWorkspaceSwal.show()">
+            <i class="fas fa-trash"></i> <span>Delete</span>
+          </a>
+        </li>
+        <hr>
+      </ng-container>
+      <ng-container *ngIf="workspace.id && chat.id">
+        <li class="menu-header">{{ chat.name }}</li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id, 'chat', chat.id]">
+            <i class="fas fa-info"></i> <span>Details</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id, 'chat', chat.id, 'messages']">
+            <i class="fas fa-comments"></i> <span>Messages</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-info" href="javascript:void(0);" (click)="openEditChatModal()">
+            <i class="fas fa-edit"></i> <span>Settings</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-danger" href="javascript:void(0);" (click)="deleteChatSwal.show()">
+            <i class="fas fa-trash"></i> <span>Delete</span>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="workspace.id && project.id">
+        <li class="menu-header">{{ project.name }}</li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id, 'chat', project.id]">
+            <i class="fas fa-info"></i> <span>Details</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id, 'project', project.id, 'tasks']">
+            <i class="fas fa-tasks"></i> <span>Tasks</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="['/', workspace.id, 'project', project.id, 'events']">
+            <i class="fas fa-calendar"></i> <span>Events</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-info" href="javascript:void(0);" (click)="openEditProjectModal()">
+            <i class="fas fa-edit"></i> <span>Settings</span>
+          </a>
+        </li>
+        <li *ngIf="roles.isAdmin">
+          <a class="nav-link text-danger" href="javascript:void(0);" (click)="deleteProjectSwal.show()">
+            <i class="fas fa-trash"></i> <span>Delete</span>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </aside>
+</div>
+
+<swal
+        #leaveWorkspaceSwal
+        title="Confirm"
+        [text]="'To leave from workspace: ' + workspace.name "
+        [showCancelButton]="true"
+        (confirm)="leaveFromWorkspace($event)">
+</swal>
+
+<swal
+        #deleteWorkspaceSwal
+        title="Confirm Password"
+        [text]="'To remove workspace: ' + workspace.name "
+        input="password"
+        [showCancelButton]="true"
+        (confirm)="deleteWorkspace($event)">
+</swal>
+
+<swal
+        #deleteChatSwal
+        title="Confirm"
+        [text]="'To remove chat: ' + chat.name "
+        [showCancelButton]="true"
+        (confirm)="deleteChat($event)">
+</swal>
+
+<swal
+        #deleteProjectSwal
+        title="Confirm"
+        [text]="'To remove project: ' + project.name "
+        [showCancelButton]="true"
+        (confirm)="deleteProject($event)">
+</swal>
