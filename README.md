@@ -94,7 +94,7 @@ npm install
 
 #### 2. Build for production
 ```
-ng run build --prod
+ng build --prod
 ```
 
 ## Screenshots:
