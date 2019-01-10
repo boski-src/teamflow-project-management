@@ -49,8 +49,6 @@ openssl ec -in ./certs/jwt/private.pem -pubout -out ./certs/jwt/public.pem
 	* (prod/dev).database.yaml
 	* (prod/dev).environment.yaml
 	
-*
-	
 ##### 2. Configure privileges (linux)
 	* chmod +x logs
 	* chmod +x -R storage
