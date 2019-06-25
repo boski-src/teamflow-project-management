@@ -98,7 +98,7 @@ ng build --prod
 ```
 
 ## Screenshots:
-> todo
+> [click here](https://github.com/boski-src/teamflow-project-management/tree/master/screenshots)
 
 
 #### Dependencies: [click here](https://github.com/boski-src/teamflow-project-management/network/dependencies)
